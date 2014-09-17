@@ -7,7 +7,7 @@ Template: pressbooks-book
 Tags: Pressbooks Textbook
 */
 
-@import url("../../../pressbooks/themes-book/pressbooks-book/style.css");
+@import url("../../pressbooks/themes-book/pressbooks-book/style.css");
 
 /********************
 	@Font-Face 
@@ -243,32 +243,32 @@ span.export-file-icon{
 }
 
 span.small.epub {
-	background: url(../../../pressbooks/assets/images/epub-36.png) -0 0 no-repeat;
+	background: url(../../pressbooks/assets/images/epub-36.png) -0 0 no-repeat;
 
 }
 
 span.small.epub3 {
-	background: url(../../../pressbooks/assets/images/epub3-36.png) -0 0 no-repeat;
+	background: url(../../pressbooks/assets/images/epub3-36.png) -0 0 no-repeat;
 
 }
 
 span.small.hpub {
-	background: url(../../../pressbooks/assets/images/hpub-36.png) -0 0 no-repeat;
+	background: url(../../pressbooks/assets/images/hpub-36.png) -0 0 no-repeat;
 
 }
 
 span.small.icml {
-	background: url(../../../pressbooks/assets/images/icml-36.png) -0 0 no-repeat;
+	background: url(../../pressbooks/assets/images/icml-36.png) -0 0 no-repeat;
 
 }
 
 span.small.mobi {
-	background: url(../../../pressbooks/assets/images/mobi-36.png) -0 0 no-repeat;
+	background: url(../../pressbooks/assets/images/mobi-36.png) -0 0 no-repeat;
 
 }
 
 span.small.pdf {
-	background: url(../../../pressbooks/assets/images/pdf-36.png) -0 0 no-repeat;
+	background: url(../../pressbooks/assets/images/pdf-36.png) -0 0 no-repeat;
 
 }
 
@@ -278,12 +278,12 @@ span.small.wxr {
 }
 
 span.small.vanillawxr {
-	background: url(../../../pressbooks/assets/images/vanillawxr-36.png) -0 0 no-repeat;
+	background: url(../../pressbooks/assets/images/vanillawxr-36.png) -0 0 no-repeat;
 
 }
 
 span.small.xhtml {
-	background: url(../../../pressbooks/assets/images/xhtml-36.png) -0 0 no-repeat;
+	background: url(../../pressbooks/assets/images/xhtml-36.png) -0 0 no-repeat;
 
 }
 
@@ -335,4 +335,58 @@ span.small.xhtml {
 	.alt-formats{
 		max-width: 95%;
 	}
+}
+
+/*************************
+	My Boxes
+**************************/
+
+.tbformel h1, .tbformel h2, .tbformel h3, .tbformel h4, .tbformel h5, .tbformel h6,
+.tbhowto h1, .tbhowto h2, .tbhowto h3, .tbhowto h4, .tbhowto h5, .tbhowto h6,
+.tbdefinition h1, .tbdefinition h2, .tbdefinition h3, .tbdefinition h4, .tbdefinition h5, .tbdefinition h6,
+.tbbeispiel h1, .tbbeispiel h2, .tbbeispiel h3, .tbbeispiel h4, .tbbeispiel h5, .tbbeispiel h6,
+.tbfragen h1, .tbfragen h2, .tbfragen h3, .tbfragen h4, .tbfragen h5, .tbfragen h6,
+.tbexkurs h1, .tbexkurs h2, .tbexkurs h3, .tbexkurs h4, .tbexkurs h5, .tbexkurs h6{
+
+    margin-left: -15px;
+    padding-left: 15px;
+    color: #ffffff;
+}
+
+.tbformel, .tbhowto{
+    background: #fbe0b4;
+    border-color: #f1b032;
+}
+
+.tbdefinition, .tbbeispiel{
+    background: #c7e4da;
+    border-color: #4eb79e;
+}
+
+.tbfragen{
+    background: #f8c2ad;
+    border-color: #ea553c;
+}
+
+.tbexkurs{
+    background: #dad8d9;
+    border-color: #a4a4a4;
+}
+
+.tbformel h1, .tbformel h2, .tbformel h3, .tbformel h4, .tbformel h5, .tbformel h6,
+.tbhowto h1, .tbhowto h2, .tbhowto h3, .tbhowto h4, .tbhowto h5, .tbhowto h6{
+    background: #f1b032;
+}
+
+.tbdefinition h1, .tbdefinition h2, .tbdefinition h3, .tbdefinition h4, .tbdefinition h5, .tbdefinition h6,
+.tbbeispiel h1, .tbbeispiel h2, .tbbeispiel h3, .tbbeispiel h4, .tbbeispiel h5, .tbbeispiel h6{
+    background: #4eb79e;
+}
+
+.tbfragen h1, .tbfragen h2, .tbfragen h3, .tbfragen h4, .tbfragen h5, .tbfragen h6{
+    background: #ea553c;
+}
+
+.tbexkurs h1, .tbexkurs h2, .tbexkurs h3, .tbexkurs h4, .tbexkurs h5, .tbexkurs h6{
+    background: #a4a4a4;
 }
