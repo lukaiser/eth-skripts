@@ -1014,7 +1014,7 @@ img.aligncenter {
 	text-align: center;
 }
 .wp-caption {
-	float: prince-top-if-necessary;
+	/*float: prince-top-if-necessary;*/
 	height: auto;
 	max-width: 100%;
 	margin: 1em 0;	
