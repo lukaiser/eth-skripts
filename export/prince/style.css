@@ -990,10 +990,14 @@ img {
 	height: auto;
     width: auto;
 	max-width: 100%;
-    max-height: 450px;
+    max-height: 11cm;
+}
+
+img.small{
+    max-height: 5cm;
 }
 img.extratall{
-    max-height: 1000px;
+    max-height: 23cm;
 }
 .alignleft {
 	float: left;
