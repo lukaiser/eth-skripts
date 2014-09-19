@@ -361,10 +361,9 @@ p {
 	margin-bottom: 0;
 	hyphens: auto;
 	prince-hyphenate-lines: 2;
-	orphans: 1;
-	widows:2;
+	orphans: 3;
+	widows:3;
 }
-p + p,
 .indent {
 	text-indent: 1em;
 	margin-top: 0;
