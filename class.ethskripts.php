@@ -29,7 +29,7 @@ class ETHSkripts {
         add_action('admin_menu', array('ETHSkripts', 'admin_menu'), 2);
     }
     public static function admin_menu(){
-        add_options_page(__('Discussion'), __('Discussion'), 'manage_options', 'options-discussion.php');
+        add_options_page(__('Discussion'), __('Discussion'), 'manage_options', 'options-discussion', 'options-discussion.php');
     }
 
 
