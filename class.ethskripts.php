@@ -11,6 +11,7 @@ class ETHSkripts {
     private static $initiated = false;
 
     public static function init() {
+        echo("TEEEEEST4");
         if ( ! self::$initiated ) {
             self::$initiated = true;
             self::init_hooks();
@@ -21,11 +22,13 @@ class ETHSkripts {
      * Initializes WordPress hooks
      */
     private static function init_hooks() {
+        echo("TEEEEEST3");
         add_action('admin_init', array('ETHSkripts', 'admin_init'));
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
     }
 
     public static function admin_init() {
+        echo("TEEEEEST2");
         add_action('admin_menu', array('ETHSkripts', 'admin_menu'), 2);
     }
     public static function admin_menu(){
