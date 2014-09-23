@@ -43,11 +43,8 @@ class ETHSkripts {
 
     }
     public static function load_resources() {
-        if(defined(GAWP_VERSION)){
-            wp_register_script( 'ga-filedownload.js', ETHSkripts__PLUGIN_URL.'assets/js/ga-filedownload.js', array('jquery'), ETHSkripts_VERSION );
-            wp_enqueue_script( 'ga-filedownload.js' );
-        }
-
+        wp_register_script( 'ga-filedownload.js', ETHSkripts__PLUGIN_URL.'assets/js/ga-filedownload.js', array('jquery'), ETHSkripts_VERSION );
+        wp_enqueue_script( 'ga-filedownload.js' );
     }
 
     public static function option_pbt_other_settings($default){
