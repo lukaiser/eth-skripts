@@ -8,6 +8,7 @@
     padding: 15px;
 }
 
+
 .tbformel h1, .tbformel h2, .tbformel h3, .tbformel h4, .tbformel h5, .tbformel h6,
 .tbhowto h1, .tbhowto h2, .tbhowto h3, .tbhowto h4, .tbhowto h5, .tbhowto h6,
 .tbdefinition h1, .tbdefinition h2, .tbdefinition h3, .tbdefinition h4, .tbdefinition h5, .tbdefinition h6,
@@ -17,26 +18,27 @@
 .tbverweis h1, .tbverweis h2, .tbverweis h3, .tbverweis h4, .tbverweis h5, .tbverweis h6{
 
     margin-left: -15px;
+    padding: 5px;
     padding-left: 15px;
     color: #ffffff;
 }
 
-.tbformel, .tbhowto{
+.textbox.tbformel, .textbox.tbhowto{
     background: #fbe0b4;
     border-color: #f1b032;
 }
 
-.tbdefinition, .tbbeispiel{
+.textbox.tbdefinition, .textbox.tbbeispiel{
     background: #c7e4da;
     border-color: #4eb79e;
 }
 
-.tbfragen{
+.textbox.tbfragen{
     background: #f8c2ad;
     border-color: #ea553c;
 }
 
-.tbexkurs, .tbverweis{
+.textbox.tbexkurs, .textbox.tbverweis{
     background: #dad8d9;
     border-color: #a4a4a4;
 }
