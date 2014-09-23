@@ -24,5 +24,6 @@ define( 'ETHSkripts__PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'ETHSkripts__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 require_once( ETHSkripts__PLUGIN_DIR . 'class.ethskripts.php' );
-
-add_action( 'init', array( 'ETHSkripts', 'init' ) );
+if ( get_site_option( 'pressbooks-activated' ) && get_site_option( 'pressbooks-textbook-activated' ) ) {
+    add_action( 'init', array( 'ETHSkripts', 'init' ) );
+}
