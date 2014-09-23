@@ -2,6 +2,12 @@
 	My Boxes
 **************************/
 
+.textbox {
+    border: 1px solid #333;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
 .tbformel h1, .tbformel h2, .tbformel h3, .tbformel h4, .tbformel h5, .tbformel h6,
 .tbhowto h1, .tbhowto h2, .tbhowto h3, .tbhowto h4, .tbhowto h5, .tbhowto h6,
 .tbdefinition h1, .tbdefinition h2, .tbdefinition h3, .tbdefinition h4, .tbdefinition h5, .tbdefinition h6,
