@@ -44,6 +44,7 @@ class ETHSkripts {
     }
     public static function load_resources() {
         //if(defined(GAWP_VERSION)){
+            echo("TEEEST");
             wp_register_script( 'ga-filedownload.js', ETHSkripts__PLUGIN_URL.'assets/js/ga-filedownload.js', array('jquery'), ETHSkripts_VERSION );
             wp_enqueue_script( 'ga-filedownload.js' );
         //}
