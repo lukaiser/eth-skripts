@@ -24,7 +24,8 @@ class ETHSkripts {
         add_action('admin_init', array('ETHSkripts', 'admin_init'));
         add_action('admin_menu', array('ETHSkripts', 'admin_menu'), 2);
         add_action( 'init', array( 'ETHSkripts', 'registerScriptsAndStyles' ) );
-        echo("TEEEST2");
+        echo(ETHSkripts__PLUGIN_DIR . 'themes-book');
+        register_theme_directory( ETHSkripts__PLUGIN_DIR . 'themes-book' );
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
     }
 
