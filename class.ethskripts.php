@@ -40,8 +40,6 @@ class ETHSkripts {
     }
 
     public static function option_pbt_other_settings($default){
-        echo("TEEST");
-        print_r($default);
         $default['pbt_mce-textbook-buttons_active'] = false;
         return($default);
     }
