@@ -23,6 +23,7 @@ class ETHSkripts {
     private static function init_hooks() {
         add_action('admin_init', array('ETHSkripts', 'admin_init'));
         add_action('admin_menu', array('ETHSkripts', 'admin_menu'), 2);
+        add_action( 'init', array( 'ETHSkripts', 'registerScriptsAndStyles' ) );
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
     }
 
@@ -31,6 +32,11 @@ class ETHSkripts {
     }
     public static function admin_menu(){
         add_options_page(__('Discussion'), __('Discussion'), 'manage_options', 'options-discussion.php');
+    }
+
+    public static function registerScriptsAndStyles() {
+        // Register styles
+        register_theme_directory( ETHSkripts__PLUGIN_DIR . 'themes-book' );
     }
 
 
