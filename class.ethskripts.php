@@ -28,7 +28,7 @@ class ETHSkripts {
     }
 
     public static function admin_init() {
-        add_editor_style( PB_PLUGIN_URL.'assets/css/editor.css' );
+        add_editor_style( ETHSkripts__PLUGIN_URL.'assets/css/editor.css' );
         add_filter( 'mce_external_plugins', array( 'ETHSkripts', 'addTextbookButtons' ) );
         add_filter( 'mce_buttons_3', array( 'ETHSkripts', 'registerTBButtons' ) );
     }
@@ -54,7 +54,7 @@ class ETHSkripts {
      */
     public static function addTextbookButtons( $plugin_array ) {
 
-        $plugin_array['textboxbuttons'] = PB_PLUGIN_URL.'assets/js/textbox-buttons.js';
+        $plugin_array['textboxbuttons'] = ETHSkripts__PLUGIN_URL.'assets/js/textbox-buttons.js';
         return $plugin_array;
     }
 
