@@ -29,7 +29,6 @@ class ETHSkripts {
 
     public static function admin_init() {
         add_editor_style( PB_PLUGIN_URL.'assets/css/editor.css' );
-        add_filter('option_pbt_other_settings', array( 'ETHSkripts', 'option_pbt_other_settings' ) );
     }
     public static function admin_menu(){
         add_options_page(__('Discussion'), __('Discussion'), 'manage_options', 'options-discussion.php');
