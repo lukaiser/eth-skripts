@@ -24,12 +24,13 @@ class ETHSkripts {
     private static function init_hooks() {
         echo("TEEEEEST3");
         add_action('admin_init', array('ETHSkripts', 'admin_init'));
+        add_action('admin_menu', array('ETHSkripts', 'admin_menu'), 2);
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
     }
 
     public static function admin_init() {
         echo("TEEEEEST2");
-        add_action('admin_menu', array('ETHSkripts', 'admin_menu'), 2);
+
     }
     public static function admin_menu(){
         echo("TEEEEEST");
