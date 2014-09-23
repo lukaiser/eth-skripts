@@ -23,6 +23,6 @@ define( 'ETHSkripts__MINIMUM_WP_VERSION', '3.0' );
 define( 'ETHSkripts__PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'ETHSkripts__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
-require_once( PBPrivate__PLUGIN_DIR . 'class.ethskripts.php' );
+require_once( ETHSkripts__PLUGIN_DIR . 'class.ethskripts.php' );
 
 add_action( 'init', array( 'ETHSkripts', 'init' ) );
