@@ -36,6 +36,7 @@ class ETHSkripts {
 
     public static function registerScriptsAndStyles() {
         // Register styles
+        echo(ETHSkripts__PLUGIN_DIR . 'themes-book');
         register_theme_directory( ETHSkripts__PLUGIN_DIR . 'themes-book' );
     }
 
