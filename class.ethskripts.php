@@ -23,8 +23,7 @@ class ETHSkripts {
     private static function init_hooks() {
         add_action('admin_init', array('ETHSkripts', 'admin_init'));
         add_action('admin_menu', array('ETHSkripts', 'admin_menu'), 2);
-        add_action( 'init', array( 'ETHSkripts', 'registerScriptsAndStyles' ) );
-        echo(ETHSkripts__PLUGIN_DIR . 'themes-book');
+        add_action( 'wp_loaded', array( 'ETHSkripts', 'registerScriptsAndStyles' ) );
         register_theme_directory( ETHSkripts__PLUGIN_DIR . 'themes-book' );
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
     }
