@@ -24,7 +24,6 @@ class ETHSkripts {
         add_action('admin_init', array('ETHSkripts', 'admin_init'));
         add_action('admin_menu', array('ETHSkripts', 'admin_menu'), 2);
         add_action( 'wp_loaded', array( 'ETHSkripts', 'registerScriptsAndStyles' ) );
-        register_theme_directory( ETHSkripts__PLUGIN_DIR . 'themes-book' );
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
     }
 
@@ -37,8 +36,6 @@ class ETHSkripts {
 
     public static function registerScriptsAndStyles() {
         // Register styles
-        echo("TEEEEEEST");
-        echo(ETHSkripts__PLUGIN_DIR . 'themes-book');
         register_theme_directory( ETHSkripts__PLUGIN_DIR . 'themes-book' );
     }
 
