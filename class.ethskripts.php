@@ -29,6 +29,8 @@ class ETHSkripts {
 
     public static function admin_init() {
         add_editor_style( PB_PLUGIN_URL.'assets/css/editor.css' );
+        add_filter( 'mce_external_plugins', array( 'ETHSkripts', 'addTextbookButtons' ) );
+        add_filter( 'mce_buttons_3', array( 'ETHSkripts', 'registerTBButtons' ) );
     }
     public static function admin_menu(){
         add_options_page(__('Discussion'), __('Discussion'), 'manage_options', 'options-discussion.php');
@@ -42,6 +44,29 @@ class ETHSkripts {
     public static function option_pbt_other_settings($default){
         $default['pbt_mce-textbook-buttons_active'] = false;
         return($default);
+    }
+
+    /**
+     * Add the script to the mce array
+     *
+     * @param array $plugin_array
+     * @return array
+     */
+    public static function addTextbookButtons( $plugin_array ) {
+
+        $plugin_array['textboxbuttons'] = PB_PLUGIN_URL.'assets/js/textbox-buttons.js';
+        return $plugin_array;
+    }
+
+    /**
+     * Push our buttons onto the buttons stack in the 3rd mce row
+     *
+     * @param type $buttons
+     */
+    public static function registerTBButtons( $buttons ) {
+
+        array_push( $buttons, 'tbformel', 'tbhowto', 'tbdefinition', 'tbbeispiel', 'tbfragen', 'tbverweis', 'tbexkurs' );
+        return $buttons;
     }
 
 
