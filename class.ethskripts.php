@@ -25,8 +25,6 @@ class ETHSkripts {
         add_action('admin_menu', array('ETHSkripts', 'admin_menu'), 2);
         add_action( 'wp_loaded', array( 'ETHSkripts', 'add_themes' ) );
         add_action( 'wp_enqueue_scripts', array( 'ETHSkripts', 'load_resources' ) );
-        add_filter( 'shibboleth_session_initiator_url', array( 'ETHSkripts', 'shibboleth_session_initiator_url' ) );
-        add_filter( 'shibboleth_authenticate_user', array( 'ETHSkripts', 'shibboleth_authenticate_user' ) );
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
     }
 
@@ -75,35 +73,6 @@ class ETHSkripts {
 
         array_push( $buttons, 'tbformel', 'tbhowto', 'tbdefinition', 'tbbeispiel', 'tbfragen', 'tbverweis', 'tbexkurs' );
         return $buttons;
-    }
-
-
-    public static function shibboleth_session_initiator_url( $initiator_url ) {
-
-        $target = site_url('wp-login.php');
-
-        $target = add_query_arg('action', 'shibboleth', $target);
-        if ( !empty($redirect) ) {
-            $target = add_query_arg('redirect_to', urlencode($_REQUEST['redirect_to']), $target);
-        }
-
-        // now build the Shibboleth session initiator URL
-        $initiator_url = shibboleth_get_option('shibboleth_login_url');
-        $initiator_url = add_query_arg('target', urlencode($target), $initiator_url);
-
-        $initiator_url = apply_filters('shibboleth_session_initiator_url', $initiator_url);
-
-        return $initiator_url;
-    }
-
-    public static function shibboleth_authenticate_user( $user ) {
-        if ( empty ( $user->roles ) or ! is_array( $user->roles ) ){
-            $user_role = shibboleth_get_user_role();
-            $user->set_role($user_role);
-        }
-
-
-
     }
 
 
