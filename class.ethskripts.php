@@ -34,7 +34,6 @@ class ETHSkripts {
         add_filter( 'mce_buttons_3', array( 'ETHSkripts', 'registerTBButtons' ) );
     }
     public static function admin_menu(){
-        add_menu_page(__('Tools'), __('Tools'), 'manage_network_options', 'tools.php', '', 'dashicons-admin-tools');
         add_options_page(__('Discussion'), __('Discussion'), 'manage_options', 'options-discussion.php');
     }
 
