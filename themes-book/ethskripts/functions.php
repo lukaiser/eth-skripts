@@ -91,7 +91,7 @@ function pbt_get_microdata_meta_elements() {
 /**
  * Prevent access by unregistered user if the book in question is private.
  */
-function pb_private() {
+function pb_private2() {
     $bloginfourl= get_bloginfo('url'); ?>
     <div <?php post_class(); ?>>
 
