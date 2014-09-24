@@ -86,3 +86,18 @@ function pbt_get_microdata_meta_elements() {
 	}
 	return $html;
 }
+
+
+/**
+ * Prevent access by unregistered user if the book in question is private.
+ */
+function pb_private() {
+    $bloginfourl= get_bloginfo('url'); ?>
+    <div <?php post_class(); ?>>
+
+        <h2 class="entry-title denied-title"><?php _e('Access Denied', 'pressbooks'); ?></h2>
+        <!-- Table of content loop goes here. -->
+        <div class="entry_content denied-text"><?php _e('This book is private, and accessible only to registered users. If you have an account you can <a href="'. $bloginfourl .'/wp-login.php?redirect_to='.$bloginfourl.'" class="login">login here</a>  <p class="sign-up">You can also set up your own PressBooks book at: <a href="http://pressbooks.com">PressBooks.com</a>.', 'pressbooks'); ?></p></div>
+    </div><!-- #post-## -->
+<?php
+}
