@@ -12,6 +12,8 @@ add_action( 'wp_print_styles', 'fitzgerald_enqueue_styles' );
 
 add_filter("pb_lists_add_numbers_to_list_elements", function(){return true;});
 
+add_action( 'login_enqueue_scripts', function(){wp_enqueue_style( 'login-head', ETHSkripts__PLUGIN_URL.'themes-book/ethskripts/style-login.css', false );} );
+
 /**
  * Returns an html blog of meta elements 
  * 
