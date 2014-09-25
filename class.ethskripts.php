@@ -108,7 +108,15 @@ class ETHSkripts {
     public static function private_redirect(  ) {
         $metadata = pb_get_book_information();
         if (get_option('blog_public') != '1' && !current_user_can('read')){
-            $loginurl = get_bloginfo('url').'/wp-login.php?redirect_to='.get_permalink();
+            $pageURL = 'http';
+            if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+            $pageURL .= "://";
+            if ($_SERVER["SERVER_PORT"] != "80") {
+                $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+            } else {
+                $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+            }
+            $loginurl = get_bloginfo('url').'/wp-login.php?redirect_to='.$pageURL;
             wp_safe_redirect($loginurl);
         }
     }
