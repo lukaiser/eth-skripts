@@ -4,7 +4,7 @@
 #shibboleth_login a{
     display: inline-block;
     font-size: 13px;
-    margin: 0;
+    margin: 0 0 5px;
     cursor: pointer;
     border-width: 1px;
     border-style: solid;
