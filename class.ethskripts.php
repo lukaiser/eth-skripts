@@ -26,6 +26,7 @@ class ETHSkripts {
         add_action( 'wp_loaded', array( 'ETHSkripts', 'add_themes' ) );
         add_action( 'wp_enqueue_scripts', array( 'ETHSkripts', 'load_resources' ) );
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
+        add_action( 'wp', array( 'ETHSkripts', 'private_redirect' ) );
     }
 
     public static function admin_init() {
@@ -100,6 +101,15 @@ class ETHSkripts {
             return $themes;
         } else {
             return $themes;
+        }
+    }
+
+
+    public static function private_redirect(  ) {
+        $metadata = pb_get_book_information();
+        if (get_option('blog_public') != '1' && !current_user_can('read')){
+            $loginurl = get_bloginfo('url').'/wp-login.php?redirect_to='.get_permalink();
+            wp_safe_redirect($loginurl);
         }
     }
 
