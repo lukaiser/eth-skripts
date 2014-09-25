@@ -1,7 +1,7 @@
 /*************************
 	Shibboleth
 **************************/
-.shibboleth_login a{
+#shibboleth_login a{
     display: inline-block;
     font-size: 13px;
     margin: 0;
@@ -27,7 +27,7 @@
     padding: 0 12px 2px;
     float: right;
 }
-.shibboleth_login a:after{
+#shibboleth_login a:after{
     content: "";
     display: table;
 }
