@@ -337,6 +337,10 @@ span.small.xhtml {
 	}
 }
 
+ol.commentlist li{
+    list-style: none;
+}
+
 /*************************
 	My Boxes
 **************************/
