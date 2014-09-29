@@ -7,11 +7,11 @@
 function fitzgerald_enqueue_styles() {
 	wp_enqueue_style( 'fitzgerald-fonts', 'https://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700|Roboto+Condensed:400,300,300italic,400italic' );
 }
-
+//add font
 add_action( 'wp_print_styles', 'fitzgerald_enqueue_styles' );
-
+//turn on numbering
 add_filter("pb_lists_add_numbers_to_list_elements", function(){return true;});
-
+//add login css
 add_action( 'login_enqueue_scripts', function(){wp_enqueue_style( 'login-head', ETHSkripts__PLUGIN_URL.'themes-book/ethskripts/style-login.css', false );} );
 
 /**

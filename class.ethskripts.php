@@ -1,5 +1,11 @@
 <?php
 /**
+ * The Main Plugin Class
+ * • Das ETH Design
+ * • Änderungen am Editor (Buttons für Boxen)
+ * • Das Google Analytics Tracking von Downloads
+ * • Die Umleitung auf die Loginseite bei Privaten Büchern
+ * • Macht die Optionen von Diskussionen wieder zugänglich (Pressbooks versteckt die)
  * Created by PhpStorm.
  * User: lukas
  * Date: 23.09.14
@@ -8,8 +14,14 @@
 
 class ETHSkripts {
 
+    /**
+     * @var bool if plugin is initiated
+     */
     private static $initiated = false;
 
+    /**
+     * init hook handler
+     */
     public static function init() {
         if ( ! self::$initiated ) {
             self::$initiated = true;
@@ -29,32 +41,51 @@ class ETHSkripts {
         add_action( 'wp', array( 'ETHSkripts', 'private_redirect' ) );
     }
 
+    /**
+     *  Initializes admin hooks
+     */
     public static function admin_init() {
         add_editor_style( ETHSkripts__PLUGIN_URL.'assets/css/editor.css' );
         add_filter( 'mce_external_plugins', array( 'ETHSkripts', 'addTextbookButtons' ) );
         add_filter( 'mce_buttons_3', array( 'ETHSkripts', 'registerTBButtons' ) );
     }
+
+    /**
+     * Adds the Discussion menu point back to menu
+     */
     public static function admin_menu(){
         add_options_page(__('Discussion'), __('Discussion'), 'manage_options', 'options-discussion.php');
     }
 
+    /**
+     * Adds the themes in the theme folder to Wordpress
+     */
     public static function add_themes() {
         // Register styles
         register_theme_directory( ETHSkripts__PLUGIN_DIR . 'themes-book' );
 
     }
+
+    /**
+     * Adds the Javascript that tracks the file downloads to the page
+     */
     public static function load_resources() {
         wp_register_script( 'ga-filedownload.js', ETHSkripts__PLUGIN_URL.'assets/js/ga-filedownload.js', array('jquery'), ETHSkripts_VERSION );
         wp_enqueue_script( 'ga-filedownload.js' );
     }
 
+    /**
+     * Deactivates editor buttons added by pressbook-textbook
+     * @param $default
+     * @return mixed
+     */
     public static function option_pbt_other_settings($default){
         $default['pbt_mce-textbook-buttons_active'] = false;
         return($default);
     }
 
     /**
-     * Add the script to the mce array
+     * Add the box buttons script to the mce array
      *
      * @param array $plugin_array
      * @return array
@@ -80,7 +111,6 @@ class ETHSkripts {
     /**
      * Pressbooks filters allowed themes, this adds our themes to the list
      *
-     * @since 1.0.7
      * @param array $themes
      * @return array
      */
@@ -105,6 +135,9 @@ class ETHSkripts {
     }
 
 
+    /**
+     * Redirect to the Login Page if accessing a private book
+     */
     public static function private_redirect(  ) {
         $metadata = pb_get_book_information();
         if (get_option('blog_public') != '1' && !current_user_can('read')){

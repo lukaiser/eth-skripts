@@ -2,6 +2,7 @@ jQuery(document).ready(function($) {
     var baseHref = "";
     if (jQuery("base").attr("href") != undefined)
         baseHref = jQuery("base").attr("href");
+    //add Google Analytics to Book files
     jQuery(".alt-formats a").each(function() {
         var href = jQuery(this).attr("href");
         if (href) {
