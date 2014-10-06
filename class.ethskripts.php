@@ -39,8 +39,8 @@ class ETHSkripts {
         add_action( 'wp_enqueue_scripts', array( 'ETHSkripts', 'load_resources' ) );
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
         add_action( 'wp', array( 'ETHSkripts', 'private_redirect' ) );
-        add_filter( 'option_home' , array( 'ILAnnotations', 'addHttps') );
-        add_filter( 'option_siteurl' , array( 'ILAnnotations', 'addHttps') );
+        add_filter( 'option_home' , array( 'ILAnnotations', 'add_https') );
+        add_filter( 'option_siteurl' , array( 'ILAnnotations', 'add_https') );
         add_filter( 'wpmu_validate_blog_signup' , array( 'ILAnnotations', 'wpmu_validate_blog_signup') );
     }
 
@@ -162,7 +162,7 @@ class ETHSkripts {
      * @param $original
      * @return mixed
      */
-    public static function addHttps($original){
+    public static function add_https($original){
         echo("GOGOGO: ".$original);
         return preg_replace("/^http:/i", "https:", $original);
     }
