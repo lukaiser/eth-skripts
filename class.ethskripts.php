@@ -39,7 +39,7 @@ class ETHSkripts {
         add_action( 'wp_enqueue_scripts', array( 'ETHSkripts', 'load_resources' ) );
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
         add_action( 'wp', array( 'ETHSkripts', 'private_redirect' ) );
-        add_filter( 'wpmu_validate_blog_signup' , array( 'ILAnnotations', 'wpmu_validate_blog_signup') );
+        add_filter( 'wpmu_validate_blog_signup' , array( 'ILAnnotations', 'wpmu_validate_blog_signup'), 10 );
     }
 
     /**
