@@ -39,7 +39,8 @@ class ETHSkripts {
         add_action( 'wp_enqueue_scripts', array( 'ETHSkripts', 'load_resources' ) );
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
         add_action( 'wp', array( 'ETHSkripts', 'private_redirect' ) );
-        add_filter( 'wpmu_validate_blog_signup' , array( 'ETHSkripts', 'wpmu_validate_blog_signup'), 10 );
+        add_filter( 'pre_update_option_siteurl' , array( 'ETHSkripts', 'add_https'), 10 );
+        add_filter( 'pre_update_option_home' , array( 'ETHSkripts', 'add_https'), 10 );
     }
 
     /**
@@ -160,9 +161,8 @@ class ETHSkripts {
      * @param $default
      * @return mixed
      */
-    public static function wpmu_validate_blog_signup($default){
-        $default["domain"] = preg_replace( "/^http:/i", "https:", $default["domain"] );
-        return $default;
+    public static function add_https($default){
+        return preg_replace( "/^http:/i", "https:", $default );
     }
 
 
