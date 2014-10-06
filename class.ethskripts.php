@@ -179,8 +179,11 @@ class ETHSkripts {
             'privacy_settings',
             'privacy_settings_section'
         );
-
-        add_filter( "sanitize_option_privacy_settings", array( 'ETHSkripts', 'shibboleth_setting_sanitize' ), 11 );
+        register_setting(
+            'privacy_settings',
+            'shibboleth_subscriber',
+            'ETHSkripts::shibboleth_setting_sanitize'
+        );
     }
 
     /**
@@ -212,18 +215,7 @@ class ETHSkripts {
      * @return mixed
      */
     public static function shibboleth_setting_sanitize($input){
-        echo("GOGOGO");
-        if ( ! isset( $_POST['privacy_settings']['shibboleth_subscriber'] )  ) {
-            $input['shibboleth_subscriber'] = 0;
-        } else {
-            $val = intval($_POST['privacy_settings']['shibboleth_subscriber']);
-            if($val > 3 || $val < 0){
-                $input['shibboleth_subscriber'] = 0;
-            }else{
-                $input['shibboleth_subscriber'] = $val;
-            }
-        }
-        return($input);
+        return absint($input);
     }
 
     /**
