@@ -219,12 +219,7 @@ class ETHSkripts {
      */
     public static function shibboleth_user_role($default){
         $values = explode(';', $_SERVER["homeOrganization"]);
-        $options = get_option( 'shibboleth_subscriber' );
-        if(array_key_exists('shibboleth_subscriber', $options)){
-            $option = $options['shibboleth_subscriber'];
-        }else{
-            return false;
-        }
+        $option = get_option( 'shibboleth_subscriber' );
 
         if($option == 1){
             if ( in_array("ethz.ch", $values) ) {
