@@ -215,6 +215,7 @@ class ETHSkripts {
      * @return mixed
      */
     public static function shibboleth_setting_sanitize($input){
+        echo("GOGOGO");
         return absint($input);
     }
 
