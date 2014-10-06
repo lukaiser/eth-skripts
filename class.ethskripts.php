@@ -41,6 +41,7 @@ class ETHSkripts {
         add_action( 'wp', array( 'ETHSkripts', 'private_redirect' ) );
         add_filter( 'pre_update_option_siteurl' , array( 'ETHSkripts', 'add_https'), 10 );
         add_filter( 'pre_update_option_home' , array( 'ETHSkripts', 'add_https'), 10 );
+        add_filter( 'shibboleth_user_role' , array( 'ETHSkripts', 'shibboleth_user_role'), 10 );
     }
 
     /**
@@ -50,6 +51,7 @@ class ETHSkripts {
         add_editor_style( ETHSkripts__PLUGIN_URL.'assets/css/editor.css' );
         add_filter( 'mce_external_plugins', array( 'ETHSkripts', 'addTextbookButtons' ) );
         add_filter( 'mce_buttons_3', array( 'ETHSkripts', 'registerTBButtons' ) );
+        static::init_shibboleth_setting();
     }
 
     /**
@@ -163,6 +165,94 @@ class ETHSkripts {
      */
     public static function add_https($default){
         return preg_replace( "/^http:/i", "https:", $default );
+    }
+
+    /**
+     * Add Shibboleth setting to the privacy menu
+     */
+    public static function init_shibboleth_setting(){
+
+        add_settings_field(
+            'shibboleth_subscriber',
+            __( 'Who can become a subscriber?', 'ethskript' ),
+            'ETHSkripts::shibboleth_setting_callback',
+            'privacy_settings',
+            'privacy_settings_section'
+        );
+
+        add_filter( "sanitize_option_privacy_settings", array( 'ETHSkripts', 'shibboleth_setting_sanitize' ), 11 );
+    }
+
+    /**
+     * Output of the option
+     * @param $args Arguments
+     */
+    public static function shibboleth_setting_callback( $args ) {
+
+        $options = get_option( 'shibboleth_subscriber' );
+
+        if ( ! isset( $options['shibboleth_subscriber'] ) ) {
+            $options['shibboleth_subscriber'] = 0;
+        }
+        $selected = $options['shibboleth_subscriber'];
+
+        $html = '<lable>'.$args[0].'</lable>';
+        $html .= '<select name="privacy_settings[shibboleth_subscriber]" class="shibboleth_subscriber">';
+        $html .= '<option value="0"'.($selected == 0 ? ' selected = "selected"' : '').'>'.__( 'Nobody', 'pressbooks' ).'</option>';
+        $html .= '<option value="1"'.($selected == 1 ? ' selected = "selected"' : '').'>'.__( 'All ETH Users', 'pressbooks' ).'</option>';
+        $html .= '<option value="2"'.($selected == 2 ? ' selected = "selected"' : '').'>'.__( 'All ETH and UZH Users', 'pressbooks' ).'</option>';
+        $html .= '<option value="3"'.($selected == 3 ? ' selected = "selected"' : '').'>'.__( 'All Shibboleth Users', 'pressbooks' ).'</option>';
+        $html .= '</select>';
+        echo $html;
+    }
+
+    /**
+     * Callback if the option gets changed
+     * @param $input
+     * @return mixed
+     */
+    public static function shibboleth_setting_sanitize($input){
+        if ( ! isset( $_POST['privacy_settings']['shibboleth_subscriber'] )  ) {
+            $input['shibboleth_subscriber'] = 0;
+        } else {
+            $val = intval($_POST['privacy_settings']['shibboleth_subscriber']);
+            if($val > 3 || $val < 0){
+                $input['shibboleth_subscriber'] = 0;
+            }else{
+                $input['shibboleth_subscriber'] = $val;
+            }
+        }
+        return($input);
+    }
+
+    /**
+     * Set user role by own criteria
+     * @param $default
+     */
+    public static function shibboleth_user_role($default){
+        $values = explode(';', $_SERVER["homeOrganization"]);
+        $options = get_option( 'shibboleth_subscriber' );
+        if(array_key_exists('shibboleth_subscriber', $options)){
+            $option = $options['shibboleth_subscriber'];
+        }else{
+            return false;
+        }
+
+        if($option == 1){
+            if ( in_array("ethz.ch", $values) ) {
+                return "subscriber";
+            }
+        }else if($option == 2){
+            if ( in_array("ethz.ch", $values) ) {
+                return "subscriber";
+            }
+            if ( in_array("uzh.ch", $values) ) {
+                return "subscriber";
+            }
+        }else if($option == 3){
+            return "subscriber";
+        }
+        return false;
     }
 
 
