@@ -163,6 +163,7 @@ class ETHSkripts {
      * @return mixed
      */
     public static function addHttps($original){
+        echo($original);
         return preg_replace( "/^http:/i", "https:", $original );
     }
 
