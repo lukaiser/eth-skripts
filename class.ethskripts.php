@@ -161,6 +161,7 @@ class ETHSkripts {
      * @return mixed
      */
     public static function wpmu_validate_blog_signup($default){
+        print_r($default);
         $default["domain"] = preg_replace( "/^http:/i", "https:", $default["domain"] );
         return $default;
     }
