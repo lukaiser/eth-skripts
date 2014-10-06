@@ -212,6 +212,7 @@ class ETHSkripts {
      * @return mixed
      */
     public static function shibboleth_setting_sanitize($input){
+        echo("GOGOGO");
         if ( ! isset( $_POST['privacy_settings']['shibboleth_subscriber'] )  ) {
             $input['shibboleth_subscriber'] = 0;
         } else {
