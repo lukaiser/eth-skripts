@@ -184,11 +184,10 @@ class ETHSkripts {
         }
 
         $blogs = get_blogs_of_user( $user->ID );
-        if ( array_key_exists( get_current_blog_id(), $blogs ) ) {
-            // Yes, user has access to this blog
-            return $redirect_to;
+        if ( !array_key_exists( get_current_blog_id(), $blogs ) ) {
+            wp_logout();
         }
-        wp_redirect("http://google.com", 403);
+        return $redirect_to;
     }
 
     /**
