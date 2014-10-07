@@ -201,7 +201,7 @@ class ETHSkripts {
         $html .= '<option value="0"'.($selected == 0 ? ' selected = "selected"' : '').'>'.__( 'Nobody', 'pressbooks' ).'</option>';
         $html .= '<option value="1"'.($selected == 1 ? ' selected = "selected"' : '').'>'.__( 'ETH Users', 'pressbooks' ).'</option>';
         $html .= '<option value="2"'.($selected == 2 ? ' selected = "selected"' : '').'>'.__( 'ETH and UZH Users', 'pressbooks' ).'</option>';
-        $html .= '<option value="3"'.($selected == 3 ? ' selected = "selected"' : '').'>'.__( 'Shibboleth Users', 'pressbooks' ).'</option>';
+        $html .= '<option value="3"'.($selected == 3 ? ' selected = "selected"' : '').'>'.__( 'SWITCHaai Users', 'pressbooks' ).'</option>';
         $html .= '</select>';
         echo $html;
     }
