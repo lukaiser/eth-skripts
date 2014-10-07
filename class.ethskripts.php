@@ -158,7 +158,7 @@ class ETHSkripts {
             } else {
                 $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
             }
-            $loginurl = get_bloginfo('url').'/wp-login.php?redirect_to='.urlencode($pageURL);
+            $loginurl = wp_login_url($pageURL);
             wp_safe_redirect($loginurl);
         }
     }
