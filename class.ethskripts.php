@@ -44,6 +44,8 @@ class ETHSkripts {
         add_filter( 'shibboleth_user_role' , array( 'ETHSkripts', 'shibboleth_user_role'), 10 );
         //add login css
         add_action( 'login_enqueue_scripts', function(){wp_enqueue_style( 'login-head', ETHSkripts__PLUGIN_URL.'assets/css/style-login.css', false );} );
+        //remove PressBooks redirect
+        remove_filter( 'login_redirect', '\PressBooks\Redirect\login', 10 );
     }
 
     /**
