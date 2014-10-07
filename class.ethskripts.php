@@ -45,7 +45,7 @@ class ETHSkripts {
         //add login css
         add_action( 'login_enqueue_scripts', function(){wp_enqueue_style( 'login-head', ETHSkripts__PLUGIN_URL.'assets/css/style-login.css', false );} );
         //remove PressBooks redirect
-        remove_filter( 'login_redirect', '\PressBooks\Redirect\login', 10 );
+        //remove_filter( 'login_redirect', '\PressBooks\Redirect\login', 10 );
         //add_filter( 'authenticate', array( 'ETHSkripts', 'authenticate'), 100, 3 );
     }
 
