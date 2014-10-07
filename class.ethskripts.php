@@ -188,8 +188,7 @@ class ETHSkripts {
             // Yes, user has access to this blog
             return $redirect_to;
         }
-        wp_redirect($redirect_to, 403);
-        return $redirect_to;
+        wp_redirect("http://google.com", 403);
     }
 
     /**
