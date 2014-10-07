@@ -49,7 +49,6 @@ class ETHSkripts {
         add_filter( 'authenticate', array( 'ETHSkripts', 'authenticate'), 100, 3 );
         add_filter( 'embed_handler_html', array( 'ETHSkripts', 'do_not_embed_in_exports'), 10, 2 );
         add_filter( 'embed_oembed_html', array( 'ETHSkripts', 'do_not_embed_in_exports'), 10, 2 );
-        add_action( 'pb_export_epub_convert_start', array( 'ETHSkripts', 'add_embed_handler' ) );
     }
 
     /**
@@ -284,10 +283,6 @@ class ETHSkripts {
             return '<a href="' . esc_url($url) . '">' . esc_html($url) . '</a>';
         }
         return $return;
-    }
-
-    public static function add_embed_handler(){
-        require( ABSPATH . WPINC . '/class-wp-embed.php' );
     }
 
 
