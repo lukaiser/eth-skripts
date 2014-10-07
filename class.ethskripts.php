@@ -46,7 +46,7 @@ class ETHSkripts {
         add_action( 'login_enqueue_scripts', function(){wp_enqueue_style( 'login-head', ETHSkripts__PLUGIN_URL.'assets/css/style-login.css', false );} );
         //remove PressBooks redirect
         remove_filter( 'login_redirect', '\PressBooks\Redirect\login', 10 );
-        add_filter( 'login_redirect', array( 'ETHSkripts', 'login_redirect'), 10, 3 );
+        add_filter( 'authenticate', array( 'ETHSkripts', 'authenticate'), 100, 3 );
     }
 
     /**
@@ -164,30 +164,26 @@ class ETHSkripts {
     }
 
     /**
-     * Change redirect upon login to 403 if no rights
+     * Send error if user has no rights
      *
-     * @param string $redirect_to
-     * @param string $request_redirect_to
-     * @param \WP_User $user
+     * @since 2.8.0
      *
-     * @return string
+     * @param WP_User|WP_Error|null $user     WP_User or WP_Error object from a previous callback. Default null.
+     * @param string                $username Username. If not empty, cancels the cookie authentication.
+     * @param string                $password Password. If not empty, cancels the cookie authentication.
+     * @return WP_User|WP_Error WP_User on success, WP_Error on failure.
      */
-    public static function login_redirect( $redirect_to, $request_redirect_to, $user){
-        if ( false === is_a( $user, 'WP_User' ) ) {
-            // Unknown user, bail with default
-            return $redirect_to;
+    public static function authenticate($user, $username, $password) {
+        if ( is_a( $user, 'WP_User' ) ) {
+            $blogs = get_blogs_of_user( $user->ID );
+            if ( array_key_exists( get_current_blog_id(), $blogs ) ) {
+                // Yes, user has access to this blog
+                return $user;
+            }else{
+                return new WP_Error('no_access', __('You do not have sufficient access.'));
+            }
         }
-
-        if ( is_super_admin( $user->ID ) ) {
-            // This is an admin, don't mess
-            return $redirect_to;
-        }
-
-        $blogs = get_blogs_of_user( $user->ID );
-        if ( !array_key_exists( get_current_blog_id(), $blogs ) ) {
-            return get_bloginfo('url').'/wp-login.php?redirect_to='.urlencode($redirect_to).'&reauth=1';
-        }
-        return $redirect_to;
+        return $user;
     }
 
     /**
