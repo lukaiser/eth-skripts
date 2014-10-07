@@ -278,7 +278,9 @@ class ETHSkripts {
      * @return mixed
      */
     public static function do_not_embed_in_exports($return, $url){
+        echo("TESTTEST");
         if(isset($_POST['export_formats']) || array_key_exists( 'format', $GLOBALS['wp_query']->query_vars )){
+            echo("TESTTEST2");
             return '<a href="' . esc_url($url) . '">' . esc_html($url) . '</a>';
         }
         return $return;
