@@ -180,6 +180,9 @@ class ETHSkripts {
                 // Yes, user has access to this blog
                 return $user;
             }else{
+                if ( isset($_POST['log']) ){
+                    unset($_POST['log']);
+                }
                 return new WP_Error('no_access', __('You do not have sufficient access.'));
             }
         }
