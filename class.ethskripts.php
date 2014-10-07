@@ -46,6 +46,7 @@ class ETHSkripts {
         add_action( 'login_enqueue_scripts', function(){wp_enqueue_style( 'login-head', ETHSkripts__PLUGIN_URL.'assets/css/style-login.css', false );} );
         //remove PressBooks redirect
         remove_filter( 'login_redirect', '\PressBooks\Redirect\login', 10 );
+        add_filter( 'login_redirect', array( 'ETHSkripts', 'login_redirect'), 10, 3 );
     }
 
     /**
@@ -160,6 +161,35 @@ class ETHSkripts {
             $loginurl = get_bloginfo('url').'/wp-login.php?redirect_to='.urlencode($pageURL);
             wp_safe_redirect($loginurl);
         }
+    }
+
+    /**
+     * Change redirect upon login to 403 if no rights
+     *
+     * @param string $redirect_to
+     * @param string $request_redirect_to
+     * @param \WP_User $user
+     *
+     * @return string
+     */
+    public static function login_redirect( $redirect_to, $request_redirect_to, $user){
+        if ( false === is_a( $user, 'WP_User' ) ) {
+            // Unknown user, bail with default
+            return $redirect_to;
+        }
+
+        if ( is_super_admin( $user->ID ) ) {
+            // This is an admin, don't mess
+            return $redirect_to;
+        }
+
+        $blogs = get_blogs_of_user( $user->ID );
+        if ( array_key_exists( get_current_blog_id(), $blogs ) ) {
+            // Yes, user has access to this blog
+            return $redirect_to;
+        }
+        wp_redirect($redirect_to, 403);
+        return $redirect_to;
     }
 
     /**
