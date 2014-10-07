@@ -38,15 +38,15 @@ class ETHSkripts {
         add_action( 'wp_loaded', array( 'ETHSkripts', 'add_themes' ) );
         add_action( 'wp_enqueue_scripts', array( 'ETHSkripts', 'load_resources' ) );
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
-        add_action( 'wp', array( 'ETHSkripts', 'private_redirect' ) );
+        //add_action( 'wp', array( 'ETHSkripts', 'private_redirect' ) );
         add_filter( 'pre_update_option_siteurl' , array( 'ETHSkripts', 'add_https'), 10 );
         add_filter( 'pre_update_option_home' , array( 'ETHSkripts', 'add_https'), 10 );
         add_filter( 'shibboleth_user_role' , array( 'ETHSkripts', 'shibboleth_user_role'), 10 );
         //add login css
         add_action( 'login_enqueue_scripts', function(){wp_enqueue_style( 'login-head', ETHSkripts__PLUGIN_URL.'assets/css/style-login.css', false );} );
         //remove PressBooks redirect
-        //remove_filter( 'login_redirect', '\PressBooks\Redirect\login', 10 );
-        //add_filter( 'authenticate', array( 'ETHSkripts', 'authenticate'), 100, 3 );
+        remove_filter( 'login_redirect', '\PressBooks\Redirect\login', 10 );
+        add_filter( 'authenticate', array( 'ETHSkripts', 'authenticate'), 100, 3 );
     }
 
     /**
