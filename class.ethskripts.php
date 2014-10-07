@@ -280,9 +280,9 @@ class ETHSkripts {
     public static function do_not_embed_in_exports($return, $url){
 
         if(isset($_POST['export_formats']) || array_key_exists( 'format', $GLOBALS['wp_query']->query_vars )){
-            return "TESTSTEST".'<a href="' . esc_url($url) . '">' . esc_html($url) . '</a>';
+            return '<a href="' . esc_url($url) . '">' . esc_html($url) . '</a>';
         }
-        return "TESTTEST2".$return;
+        return $return;
     }
 
 
