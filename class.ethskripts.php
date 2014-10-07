@@ -185,7 +185,7 @@ class ETHSkripts {
 
         $blogs = get_blogs_of_user( $user->ID );
         if ( !array_key_exists( get_current_blog_id(), $blogs ) ) {
-            return new WP_Error('no_access', __('You do not have sufficient access.'));
+            return get_bloginfo('url').'/wp-login.php?redirect_to='.urlencode($redirect_to).'&reauth=1';
         }
         return $redirect_to;
     }
