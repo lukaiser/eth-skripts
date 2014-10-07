@@ -47,6 +47,8 @@ class ETHSkripts {
         //remove PressBooks redirect
         remove_filter( 'login_redirect', '\PressBooks\Redirect\login', 10 );
         add_filter( 'authenticate', array( 'ETHSkripts', 'authenticate'), 100, 3 );
+        add_filter( 'embed_handler_html', array( 'ETHSkripts', 'do_not_embed_in_exports'), 10, 2 );
+        add_filter( 'embed_oembed_html', array( 'ETHSkripts', 'do_not_embed_in_exports'), 10, 2 );
     }
 
     /**
@@ -267,6 +269,19 @@ class ETHSkripts {
             return "subscriber";
         }
         return false;
+    }
+
+    /**
+     * Return a link instead of the embed code in exports
+     * @param mixed  $return The shortcode callback function to call.
+     * @param string $url    The attempted embed URL.
+     * @return mixed
+     */
+    public static function do_not_embed_in_exports($return, $url){
+        if(isset($_POST['export_formats']) || array_key_exists( 'format', $GLOBALS['wp_query']->query_vars )){
+            return '<a href="' . esc_url($url) . '">' . esc_html($url) . '</a>';
+        }
+        return $return;
     }
 
 
