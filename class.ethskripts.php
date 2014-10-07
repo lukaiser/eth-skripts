@@ -42,6 +42,8 @@ class ETHSkripts {
         add_filter( 'pre_update_option_siteurl' , array( 'ETHSkripts', 'add_https'), 10 );
         add_filter( 'pre_update_option_home' , array( 'ETHSkripts', 'add_https'), 10 );
         add_filter( 'shibboleth_user_role' , array( 'ETHSkripts', 'shibboleth_user_role'), 10 );
+        //add login css
+        add_action( 'login_enqueue_scripts', function(){wp_enqueue_style( 'login-head', ETHSkripts__PLUGIN_URL.'assets/css/style-login.css', false );} );
     }
 
     /**
