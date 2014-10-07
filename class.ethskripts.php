@@ -38,7 +38,7 @@ class ETHSkripts {
         add_action( 'wp_loaded', array( 'ETHSkripts', 'add_themes' ) );
         add_action( 'wp_enqueue_scripts', array( 'ETHSkripts', 'load_resources' ) );
         add_filter( 'allowed_themes', array( 'ETHSkripts', 'filterChildThemes' ), 12 );
-        //add_action( 'wp', array( 'ETHSkripts', 'private_redirect' ) );
+        add_action( 'wp', array( 'ETHSkripts', 'private_redirect' ) );
         add_filter( 'pre_update_option_siteurl' , array( 'ETHSkripts', 'add_https'), 10 );
         add_filter( 'pre_update_option_home' , array( 'ETHSkripts', 'add_https'), 10 );
         add_filter( 'shibboleth_user_role' , array( 'ETHSkripts', 'shibboleth_user_role'), 10 );
@@ -148,18 +148,19 @@ class ETHSkripts {
      * Redirect to the Login Page if accessing a private book
      */
     public static function private_redirect(  ) {
-        $metadata = pb_get_book_information();
-        if (get_option('blog_public') != '1' && !current_user_can('read')){
-            $pageURL = 'http';
-            if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
-            $pageURL .= "://";
-            if ($_SERVER["SERVER_PORT"] != "80") {
-                $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-            } else {
-                $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+        if ( ! array_key_exists( 'format', $GLOBALS['wp_query']->query_vars ) ) {
+            if (get_option('blog_public') != '1' && !current_user_can('read')){
+                $pageURL = 'http';
+                if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+                $pageURL .= "://";
+                if ($_SERVER["SERVER_PORT"] != "80") {
+                    $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+                } else {
+                    $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+                }
+                $loginurl = wp_login_url($pageURL);
+                wp_safe_redirect($loginurl);
             }
-            $loginurl = wp_login_url($pageURL);
-            wp_safe_redirect($loginurl);
         }
     }
 
