@@ -310,6 +310,9 @@ span.small.xhtml {
     #commentform input, #commentform textarea, #respond .form-allowed-tags {
         width: 430px;
     }
+    #commentform input#submit {
+        width: 72px;
+    }
     .form-submit {
         margin: 10px 0 0 527px;
     }
