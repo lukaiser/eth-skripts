@@ -304,6 +304,9 @@ span.small.xhtml {
 	#sidebar{
 		margin-right: -24px;
 	}
+    #comments{
+        width: 600px;
+    }
 }
 
 @media screen and (max-width: 990px ){
