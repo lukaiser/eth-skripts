@@ -56,7 +56,7 @@
 		
 		<?php endif; ?>
 		<p class="cie-name">
-			eSkript ETH Zürich
+            <?php echo get_site_option('site_name'); ?>
 		</p>
 	</div><!-- #inner -->
 </div><!-- #footer -->
