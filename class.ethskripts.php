@@ -49,6 +49,7 @@ class ETHSkripts {
         add_filter( 'authenticate', array( 'ETHSkripts', 'authenticate'), 100, 3 );
         add_filter( 'embed_handler_html', array( 'ETHSkripts', 'do_not_embed_in_exports'), 10, 2 );
         add_filter( 'embed_oembed_html', array( 'ETHSkripts', 'do_not_embed_in_exports'), 10, 2 );
+        $GLOBALS['PB_SECRET_SAUCE']['TURN_OFF_FREEBIE_NOTICES_EPUB'] = true;
     }
 
     /**
