@@ -32,3 +32,11 @@
     display: table;
     clear: both;
 }
+.login h1 a {
+    background-image: url('../img/eskript_logo_kurz_pos.png');
+    background-size: 190px 37px;
+    width: 190px;
+    height: 37px;
+    padding-bottom: 0px !important;
+    margin-left: 65.5px;
+}
